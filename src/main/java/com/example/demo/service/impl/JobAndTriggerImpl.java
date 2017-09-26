@@ -21,6 +21,11 @@ public class JobAndTriggerImpl implements IJobAndTriggerService{
 	public PageInfo<JobAndTrigger> getJobAndTriggerDetails(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		List<JobAndTrigger> list = jobAndTriggerMapper.getJobAndTriggerDetails();
+		list.forEach(job->{
+			job.setNEXT_FIRE(job.getNEXT_FIRE_TIME());
+			job.setPREV_FIRE(job.getPREV_FIRE_TIME());
+		});
+		
 		PageInfo<JobAndTrigger> page = new PageInfo<JobAndTrigger>(list);
 		return page;
 	}

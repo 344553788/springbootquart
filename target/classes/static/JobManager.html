@@ -43,11 +43,11 @@
 		      show-overflow-tooltip>
 		    </el-table-column>
 		    
-		    <el-table-column
+		   <!--  <el-table-column
 		      prop="job_GROUP"
 		      label="任务所在组"
 		      sortable>
-		    </el-table-column>
+		    </el-table-column> -->
 		    
    		    <el-table-column
 		      prop="job_CLASS_NAME"
@@ -62,8 +62,27 @@
 		    </el-table-column>
 		    
 		    <el-table-column
+		      prop="trigger_STATE"
+		      label="触发器状态"
+		      sortable>
+		    </el-table-column>
+		    
+		    
+		   <!--  <el-table-column
 		      prop="trigger_GROUP"
 		      label="触发器所在组"
+		      sortable>
+		    </el-table-column> -->
+		    
+		    <el-table-column
+		      prop="prev_FIRE"
+		      label="上次触发时间"
+		      sortable>
+		    </el-table-column>
+		    
+		    <el-table-column
+		      prop="next_FIRE"
+		      label="下次触发时间"
 		      sortable>
 		    </el-table-column>
 		    
@@ -79,7 +98,7 @@
 		      sortable>
 		    </el-table-column>
 		    
-	        <el-table-column label="操作" width="300">
+	        <el-table-column label="操作" width="200">
 		      <template scope="scope">
 		      	<el-button
 		          size="small"
@@ -194,9 +213,7 @@
 		        	cronExpression: '',
 		        },
 		    },
-
-		    methods: {
-		    	
+		    methods:{  
 		        //从服务器读取数据
 				loadData: function(pageNum, pageSize){					
 					this.$http.get('job/queryjob?' + 'pageNum=' +  pageNum + '&pageSize=' + pageSize).then(function(res){
